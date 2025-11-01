@@ -456,6 +456,7 @@ export interface ApiFeaturedProjectFeaturedProject
       'api::featured-project.featured-project'
     > &
       Schema.Attribute.Private;
+    popularity: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     tags: Schema.Attribute.JSON;
     title: Schema.Attribute.String & Schema.Attribute.Required;

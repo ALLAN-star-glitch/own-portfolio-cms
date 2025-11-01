@@ -33,10 +33,13 @@
     "tags": {
       "type": "json"
     },
+    "liveUrl": {
+      "type": "string"
+    },
     "githubUrl": {
       "type": "string"
     },
-    "liveUrl": {
+    "popularity": {
       "type": "string"
     }
   }
