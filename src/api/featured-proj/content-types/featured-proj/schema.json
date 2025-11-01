@@ -31,7 +31,16 @@
       ]
     },
     "popularity": {
-      "type": "string"
+      "type": "enumeration",
+      "required": true,
+      "default": "Featured",
+      "enum": [
+        "Trending",
+        "Classic",
+        "New",
+        "Featured",
+        "Popular"
+      ]
     },
     "githubUrl": {
       "type": "string",

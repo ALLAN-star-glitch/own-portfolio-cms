@@ -456,10 +456,47 @@ export interface ApiFeaturedProjFeaturedProj
       'api::featured-proj.featured-proj'
     > &
       Schema.Attribute.Private;
-    popularity: Schema.Attribute.String;
+    popularity: Schema.Attribute.Enumeration<
+      ['Trending', 'Classic', 'New', 'Featured', 'Popular']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Featured'>;
     publishedAt: Schema.Attribute.DateTime;
     tags: Schema.Attribute.JSON & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFeaturedProjcFeaturedProjc
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'featured_projcs';
+  info: {
+    displayName: 'featured-projc';
+    pluralName: 'featured-projcs';
+    singularName: 'featured-projc';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::featured-projc.featured-projc'
+    > &
+      Schema.Attribute.Private;
+    popularity: Schema.Attribute.Enumeration<
+      ['New', 'Popular', 'Trending', 'Featured']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'New'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -977,6 +1014,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::featured-proj.featured-proj': ApiFeaturedProjFeaturedProj;
+      'api::featured-projc.featured-projc': ApiFeaturedProjcFeaturedProjc;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
