@@ -19,7 +19,7 @@
       "type": "blocks",
       "required": true
     },
-    "featuredImage": {
+    "image": {
       "type": "media",
       "multiple": false,
       "required": true,
