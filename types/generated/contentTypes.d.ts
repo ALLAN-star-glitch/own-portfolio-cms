@@ -430,13 +430,13 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFeaturedProjectFeaturedProject
+export interface ApiFeaturedProjFeaturedProj
   extends Struct.CollectionTypeSchema {
-  collectionName: 'featured_projects';
+  collectionName: 'featured_projs';
   info: {
-    displayName: 'featured-project';
-    pluralName: 'featured-projects';
-    singularName: 'featured-project';
+    displayName: 'featured-proj';
+    pluralName: 'featured-projs';
+    singularName: 'featured-proj';
   };
   options: {
     draftAndPublish: true;
@@ -446,19 +446,19 @@ export interface ApiFeaturedProjectFeaturedProject
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    githubUrl: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    githubUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.Required;
-    liveUrl: Schema.Attribute.String;
+    liveUrl: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::featured-project.featured-project'
+      'api::featured-proj.featured-proj'
     > &
       Schema.Attribute.Private;
     popularity: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    tags: Schema.Attribute.JSON;
+    tags: Schema.Attribute.JSON & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -976,7 +976,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::featured-project.featured-project': ApiFeaturedProjectFeaturedProject;
+      'api::featured-proj.featured-proj': ApiFeaturedProjFeaturedProj;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
