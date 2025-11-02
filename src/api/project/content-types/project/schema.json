@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "featured_projs",
+  "collectionName": "projects",
   "info": {
-    "singularName": "featured-proj",
-    "pluralName": "featured-projs",
-    "displayName": "featured-proj"
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "project"
   },
   "options": {
     "draftAndPublish": true
@@ -24,7 +24,7 @@
     },
     "img": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images",
@@ -33,16 +33,16 @@
         "audios"
       ]
     },
+    "tags": {
+      "type": "json"
+    },
     "popularity": {
       "type": "enumeration",
-      "required": true,
-      "default": "Featured",
       "enum": [
         "Trending",
-        "Classic",
         "New",
-        "Featured",
-        "Popular"
+        "Classic",
+        "Featured"
       ]
     },
     "githubUrl": {
@@ -50,12 +50,7 @@
       "required": true
     },
     "liveUrl": {
-      "type": "string",
-      "required": true
-    },
-    "tags": {
-      "type": "json",
-      "required": true
+      "type": "string"
     }
   }
 }

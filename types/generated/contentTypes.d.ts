@@ -456,6 +456,7 @@ export interface ApiFeaturedProjFeaturedProj
       'api::featured-proj.featured-proj'
     > &
       Schema.Attribute.Private;
+    modalDescription: Schema.Attribute.Blocks;
     popularity: Schema.Attribute.Enumeration<
       ['Trending', 'Classic', 'New', 'Featured', 'Popular']
     > &
@@ -470,13 +471,12 @@ export interface ApiFeaturedProjFeaturedProj
   };
 }
 
-export interface ApiFeaturedProjcFeaturedProjc
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'featured_projcs';
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
   info: {
-    displayName: 'featured-projc';
-    pluralName: 'featured-projcs';
-    singularName: 'featured-projc';
+    displayName: 'project';
+    pluralName: 'projects';
+    singularName: 'project';
   };
   options: {
     draftAndPublish: true;
@@ -485,18 +485,27 @@ export interface ApiFeaturedProjcFeaturedProjc
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    githubUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    img: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
+      Schema.Attribute.Required;
+    liveUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::featured-projc.featured-projc'
+      'api::project.project'
     > &
       Schema.Attribute.Private;
+    modalDescription: Schema.Attribute.Blocks;
     popularity: Schema.Attribute.Enumeration<
-      ['New', 'Popular', 'Trending', 'Featured']
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'New'>;
+      ['Trending', 'New', 'Classic', 'Featured']
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    tags: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1014,7 +1023,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::featured-proj.featured-proj': ApiFeaturedProjFeaturedProj;
-      'api::featured-projc.featured-projc': ApiFeaturedProjcFeaturedProjc;
+      'api::project.project': ApiProjectProject;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
