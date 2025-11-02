@@ -487,10 +487,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks & Schema.Attribute.Required;
     githubUrl: Schema.Attribute.String & Schema.Attribute.Required;
-    img: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    > &
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.Required;
     liveUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
